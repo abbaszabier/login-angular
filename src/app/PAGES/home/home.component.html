@@ -1,22 +1,46 @@
-<div class="flex flex-col items-start justify-start p-4">
-  <div>
-    @if (userState().loading) {
-      <p class="text-sm text-gray-400">Loading...</p>
-    } @else if (user()) {
-      <p class="font-semibold">{{ user()?.name }}</p>
-      <p class="text-sm text-gray-500 mb-2">{{ user()?.email }} · {{ user()?.phone }}</p>
-    } @else {
-      <p class="text-sm text-gray-400">Data user tidak ditemukan.</p>
-    }
-  </div>
-  <button
-    (click)="onLogout()"
-    [disabled]="loggingOut()"
-    class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 cursor-pointer"
-  >
-    {{ loggingOut() ? 'Loading...' : 'Logout' }}
-  </button>
-</div>
+<div class="min-h-screen bg-gray-50">
+  <nav class="flex items-center justify-between px-6 py-4 bg-white border-b shadow-sm">
+    <div class="flex items-center gap-6">
+      <span class="font-bold text-lg">MyApp</span>
+      <a
+        routerLink="/"
+        routerLinkActive="text-blue-600 font-semibold"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="text-gray-600 hover:text-blue-600 transition-colors"
+        >Home</a
+      >
+      <a
+        routerLink="/daftar-kontak"
+        routerLinkActive="text-blue-600 font-semibold"
+        class="text-gray-600 hover:text-blue-600 transition-colors"
+        >Daftar Kontak</a
+      >
+    </div>
 
-<p>home works!</p>
-<!-- <app-widget_game></app-widget_game> -->
+    <div class="flex items-center gap-4">
+      @if (userState().loading) {
+        <span class="text-sm text-gray-400">Loading...</span>
+      } @else if (user()) {
+        <div class="text-right">
+          <p class="font-semibold text-sm">{{ user()?.name }}</p>
+          <p class="text-xs text-gray-500">{{ user()?.email }} · {{ user()?.phone }}</p>
+        </div>
+      } @else {
+        <span class="text-sm text-gray-400">Data user tidak ditemukan.</span>
+      }
+
+      <button
+        (click)="onLogout()"
+        [disabled]="loggingOut()"
+        class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 cursor-pointer text-sm"
+      >
+        {{ loggingOut() ? 'Loading...' : 'Logout' }}
+      </button>
+    </div>
+  </nav>
+
+  <div class="p-6">
+    <p>home works!</p>
+    <!-- <app-widget_game></app-widget_game> -->
+  </div>
+</div>

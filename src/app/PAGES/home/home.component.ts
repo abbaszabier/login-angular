@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, signal, computed } from '@angular/core';
-import { Widget_gameModule } from '@shared/widgets/widget_game/widget_game.module';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Entity_User } from '@core/models/entities/user.entity';
 import { AuthService } from '@api/auth/auth.service';
 
@@ -7,7 +8,7 @@ import { AuthService } from '@api/auth/auth.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [Widget_gameModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
 })
 export class HomeComponent implements OnInit {
   private authService = inject(AuthService);
