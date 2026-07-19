@@ -1,0 +1,13 @@
+@if (contacts.length === 0) {
+  <p class="empty-state">Belum ada kontak.</p>
+} @else {
+  <div class="contact-list">
+    @for (item of contacts; track item.id) {
+      <app-contact-card
+        [contact]="item"
+        (toggleFavorite)="toggleFavorite.emit($event)"
+        (deleteContact)="deleteContact.emit($event)"
+      />
+    }
+  </div>
+}

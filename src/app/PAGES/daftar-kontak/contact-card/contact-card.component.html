@@ -1,0 +1,12 @@
+<div class="contact-card" [appHighlightFavorite]="contact.isFavorite">
+  <div class="info">
+    <p class="name">{{ contact.nama | uppercase }}</p>
+    <p class="email">{{ contact.email }}</p>
+    <p class="phone">{{ contact.phone | formatPhone }}</p>
+    <p class="date">Ditambahkan: {{ contact.createdAt | date: 'dd MMM yyyy, HH:mm' }}</p>
+  </div>
+  <div class="actions">
+    <button class="star" (click)="onToggleFavorite()" [class.active]="contact.isFavorite">★</button>
+    <app-button variant="danger" (onClick)="onDelete()">Hapus</app-button>
+  </div>
+</div>

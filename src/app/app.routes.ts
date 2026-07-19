@@ -17,6 +17,12 @@ export const routes: Routes = [
   },
 
   {
+    path: 'daftar-kontak',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./PAGES/daftar-kontak/daftar-kontak.component').then((m) => m.DaftarKontakComponent),
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./PAGES/authentication/page404/page404.component').then((m) => m.Page404Component),

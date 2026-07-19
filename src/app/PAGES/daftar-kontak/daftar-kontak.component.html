@@ -1,0 +1,66 @@
+<div class="page">
+  <div class="header">
+    <h1>Daftar Kontak</h1>
+    <button class="btn-add" (click)="onAddClick()">+ Tambah</button>
+  </div>
+
+  @if (showForm()) {
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="contact-form">
+      <div class="field">
+        <label for="nama">Nama</label>
+        <input id="nama" formControlName="nama" placeholder="Nama lengkap" />
+        @if (form.get('nama')?.invalid && form.get('nama')?.touched) {
+          <span class="error">
+            @if (form.get('nama')?.hasError('required')) {
+              Nama wajib diisi.
+            }
+            @if (form.get('nama')?.hasError('minlength')) {
+              Nama minimal 3 karakter.
+            }
+          </span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" formControlName="email" placeholder="nama@email.com" />
+        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+          <span class="error">
+            @if (form.get('email')?.hasError('required')) {
+              Email wajib diisi.
+            }
+            @if (form.get('email')?.hasError('email')) {
+              Format email tidak valid.
+            }
+          </span>
+        }
+      </div>
+
+      <div class="field">
+        <label for="phone">No HP</label>
+        <input id="phone" formControlName="phone" placeholder="081234567890" />
+        @if (form.get('phone')?.invalid && form.get('phone')?.touched) {
+          <span class="error">
+            @if (form.get('phone')?.hasError('required')) {
+              No HP wajib diisi.
+            }
+            @if (form.get('phone')?.hasError('pattern')) {
+              No HP harus berupa angka.
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="btn-cancel" (click)="onCancel()">Batal</button>
+        <button type="submit" class="btn-submit" [disabled]="form.invalid">Simpan</button>
+      </div>
+    </form>
+  }
+
+  <app-contact-list
+    [contacts]="contacts()"
+    (toggleFavorite)="onToggleFavorite($event)"
+    (deleteContact)="onDeleteContact($event)"
+  />
+</div>
