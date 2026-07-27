@@ -5,7 +5,7 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { PreloadAllModules, provideRouter, withPreloading } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideAnimationsAsync(),
     provideZonelessChangeDetection(),
-    provideRouter(routes),
+    provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(withInterceptors([jwtInterceptor, errorInterceptor])),
     provideAppInitializer(() => appInitFactoryFromApi(inject(AuthService))),
 
@@ -40,11 +40,11 @@ export const appConfig: ApplicationConfig = {
       },
 
       zIndex: {
-        modal: 1100,    // dialog, sidebar
-        overlay: 1000,  // dropdown, overlaypanel
-        menu: 1000,     // overlay menus
-        tooltip: 1100   // tooltip
-      }
+        modal: 1100, // dialog, sidebar
+        overlay: 1000, // dropdown, overlaypanel
+        menu: 1000, // overlay menus
+        tooltip: 1100, // tooltip
+      },
     }),
   ],
 };

@@ -1,38 +1,56 @@
 import { NgClass } from '@angular/common';
-import { Component, computed, EventEmitter, Input, input, OnInit, Output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  EventEmitter,
+  Input,
+  input,
+  OnInit,
+  Output,
+  signal,
+} from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-
 
 // import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-button',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-      <button
-        pButton
-        [type]="type"
-        [disabled]="isDisabled()"
-        [ngClass]="[class, variantClass]"
-        style="background:none;"
-        class="rounded-xl! flex items-center text-sm!"
-        (click)="handleClick()"
-      >
-        @if (loadings() && loading) {
-          <i class="pi pi-spinner animate-spin text-white"></i>
-        }
-        <ng-content>
-          Label
-        </ng-content>
-      </button>
+    <button
+      pButton
+      [type]="type"
+      [disabled]="isDisabled()"
+      [ngClass]="[class, variantClass]"
+      style="background:none;"
+      class="rounded-xl! flex items-center text-sm!"
+      (click)="handleClick()"
+    >
+      @if (loadings() && loading) {
+        <i class="pi pi-spinner animate-spin text-white"></i>
+      }
+      <ng-content> Label </ng-content>
+    </button>
   `,
   imports: [ButtonModule, NgClass],
 })
 export class ButtonComponent implements OnInit {
-
   disabled: any = input(false);
   internalDisabled = signal(false);
   isDisabled = computed(() => this.internalDisabled() || this.disabled());
-  @Input() variant: 'primary' | 'outline-primary' | 'success' | 'warning' | 'secondary' | 'danger' | 'outline' | 'softblue' | 'gray' | 'white' | 'ghost' = 'primary';
+  @Input() variant:
+    | 'primary'
+    | 'outline-primary'
+    | 'success'
+    | 'warning'
+    | 'secondary'
+    | 'danger'
+    | 'outline'
+    | 'softblue'
+    | 'gray'
+    | 'white'
+    | 'ghost' = 'primary';
   @Input() type: 'button' | 'submit' = 'button';
   @Input() class = '';
   @Input() loading = false;
@@ -44,9 +62,9 @@ export class ButtonComponent implements OnInit {
 
   @Output() onClick = new EventEmitter<void>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   handleClick() {
     // logika anti spam klik berulang
@@ -92,5 +110,4 @@ export class ButtonComponent implements OnInit {
         return '!bg-primary !border-primary text-white hover:!bg-primary/90';
     }
   }
-
 }

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactService } from '@core/services/contact.service';
@@ -11,6 +11,7 @@ import { HelperService, Popup_m } from '@core/services/helper.service';
   imports: [CommonModule, ReactiveFormsModule, ContactListComponent],
   templateUrl: './daftar-kontak.component.html',
   styleUrl: './daftar-kontak.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DaftarKontakComponent {
   private fb = inject(FormBuilder);

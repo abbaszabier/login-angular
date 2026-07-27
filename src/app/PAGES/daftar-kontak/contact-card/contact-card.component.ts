@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Contact } from '@core/models/contact.model';
 import { FormatPhonePipe } from '@shared/utils/format-phone.pipe';
@@ -11,6 +11,7 @@ import { ButtonComponent } from '@shared/ui/button/button.component';
   imports: [CommonModule, FormatPhonePipe, HighlightFavoriteDirective, ButtonComponent],
   templateUrl: './contact-card.component.html',
   styleUrl: './contact-card.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactCardComponent {
   @Input({ required: true }) contact!: Contact;

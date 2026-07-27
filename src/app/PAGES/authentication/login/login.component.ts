@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,6 +16,7 @@ import { AuthService } from '@api/auth/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, InputTextComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;

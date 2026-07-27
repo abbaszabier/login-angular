@@ -1,4 +1,11 @@
-import { Component, OnInit, inject, signal, computed } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  signal,
+  computed,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Entity_User } from '@core/models/entities/user.entity';
@@ -9,6 +16,7 @@ import { AuthService } from '@api/auth/auth.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   imports: [CommonModule, RouterLink, RouterLinkActive],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   private authService = inject(AuthService);
