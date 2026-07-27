@@ -25,10 +25,7 @@
               },
               "src/assets"
             ],
-            "styles": [
-              "src/styles.css",
-              "src/tailwind.css"
-            ]
+            "styles": ["src/styles.css", "src/tailwind.css"]
           },
           "configurations": {
             "production": {
@@ -36,6 +33,20 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all",
+              "optimization": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kb",
+                  "maximumError": "8kb"
                 }
               ]
             },
